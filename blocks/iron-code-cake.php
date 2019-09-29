@@ -54,36 +54,39 @@ function iron_code_cake_block_init() {
 		filemtime( "$dir/$style_css" )
 	);
 
-	register_block_type( 'learn-iron-code-block-cake/iron-code-cake', array(
-		'editor_script' => 'iron-code-cake-block-editor',
-		'editor_style'  => 'iron-code-cake-block-editor',
-		'style'         => 'iron-code-cake-block',
+	register_block_type(
+		'learn-iron-code-block-cake/iron-code-cake',
+		array(
+			'editor_script' => 'iron-code-cake-block-editor',
+			'editor_style'  => 'iron-code-cake-block-editor',
+			'style'         => 'iron-code-cake-block',
 
-		/**
-		 * Attributes are the editable variables in our block.
-		 * Here we create two attributes called "message" and "name" (we could
-		 * use any names here).
-		 *
-		 * When the editor is loaded, the attributes are populated by parsing the
-		 * block as it is stored in the database and extracting the values.
-		 * We control how the block is stored using our "save:" method below.
-		 * The "selector" indicates what element in our block contains the value.
-		 * The "source" indicates what part of the selected element to extract,
-		 * the most common is text (the content of the tag), however other parts of
-		 * the tag can be used (e.g. id, class, rel, href, src, alt).
-		 */
-		'attributes'    => array(
-			'message' => array(
-				'selector' => 'h3',
-				'source'   => 'text',
-				'type'     => 'string',
+			/**
+			 * Attributes are the editable variables in our block.
+			 * Here we create two attributes called "message" and "name" (we could
+			 * use any names here).
+			 *
+			 * When the editor is loaded, the attributes are populated by parsing the
+			 * block as it is stored in the database and extracting the values.
+			 * We control how the block is stored using our "save:" method below.
+			 * The "selector" indicates what element in our block contains the value.
+			 * The "source" indicates what part of the selected element to extract,
+			 * the most common is text (the content of the tag), however other parts of
+			 * the tag can be used (e.g. id, class, rel, href, src, alt).
+			 */
+			'attributes'    => array(
+				'message' => array(
+					'selector' => 'h3',
+					'source'   => 'text',
+					'type'     => 'string',
+				),
+				'name'    => array(
+					'selector' => '.name',
+					'source'   => 'text',
+					'type'     => 'string',
+				),
 			),
-			'name' => array(
-				'selector' => '.name',
-				'source'   => 'text',
-				'type'     => 'string',
-			),
-		),
-	) );
+		)
+	);
 }
 add_action( 'init', 'iron_code_cake_block_init' );
